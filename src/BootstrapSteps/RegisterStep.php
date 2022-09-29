@@ -88,7 +88,7 @@ class RegisterStep implements \Vaimo\ComposerRepositoryBundle\Interfaces\Bootstr
 
         $repositoryMap = array_combine(
             array_map(function ($item) {
-                $config = $item->getRepoConfig();
+                $config = method_exists($item, 'getRepoConfig') ? $item->getRepoConfig(): [];
                 return $config['url'] ?? '';
             }, $repositories),
             $repositories
